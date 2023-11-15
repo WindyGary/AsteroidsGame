@@ -1,4 +1,15 @@
 class Star //note that this class does NOT extend Floater
 {
-  //your code here
+  private int sColor, sLength, sWidth, sX, sY;
+  public Star(){
+    sColor = color((int)(Math.random()*255),(int)(Math.random()*255),(int)(Math.random()*255));
+    sLength = sWidth = 10;
+    sX = (int)(Math.random()*600);
+    sY = (int)(Math.random()*600);
+  }
+  public void show(){
+    noStroke();
+    fill(sColor);
+    ellipse(sX, sY, sLength, sWidth);
+  }
 }

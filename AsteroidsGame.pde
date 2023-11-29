@@ -2,14 +2,18 @@
 
 // bullet reset limit later
 
-
-Star[] patrick = new Star[300];
+Asteroid[] squid = new Asteroid[10];
+Star[] patrick = new Star[500];
 Spaceship bob = new Spaceship();
 public void setup()
 {
   size(1000, 1000);
   for (int i = 0; i < patrick.length; i++) {
     patrick[i] = new Star();
+  }
+  
+  for (int i = 0; i < squid.length; i++){
+    squid[i] = new Asteroid(); 
   }
 }
 public void draw()
@@ -20,15 +24,20 @@ public void draw()
     patrick[i].show();
   }
   
+  for (int i = 0; i < squid.length; i++){
+  squid[i].show();
+  squid[i].move();
+  }
+
   bob.show();
   bob.move();
 
   if (keyPressed) {
     if (key == 'w' ) {
-      bob.accelerate(0.1);
+      bob.accelerate(0.05);
     }
     if (key == 's') {
-      bob.accelerate(-0.1);
+      bob.accelerate(-0.05);
     }
     if (key == 'a') {
       bob.turn(-2);
@@ -38,17 +47,16 @@ public void draw()
     }
   }
   
-  if (bob.getXspeed() > 20){    // limit spaceship speed
-    bob.setXspeed(20);
-  } else if (bob.getXspeed() < -20){
-    bob.setXspeed(-20);
+  if (bob.getXspeed() > 10){    // limit spaceship speed
+    bob.setXspeed(10);
+  } else if (bob.getXspeed() < -10){
+    bob.setXspeed(-10);
   }
-    if (bob.getYspeed() > 20){
-    bob.setYspeed(20);
-  } else if (bob.getYspeed() < -20){
-    bob.setYspeed(-20);
+    if (bob.getYspeed() > 10){
+    bob.setYspeed(10);
+  } else if (bob.getYspeed() < -10){
+    bob.setYspeed(-10);
   }
-  
 }
 
 public void keyPressed(){

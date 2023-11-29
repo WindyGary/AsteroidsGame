@@ -8,15 +8,17 @@ class Spaceship extends Floater
       
       myColor = 255;
       
-      corners = 3;    //cool spaceship
+      corners = 4;    //cool spaceship
       xCorners = new int[corners];
       yCorners = new int[corners];
       xCorners[0] = -20;
       yCorners[0] = 20;
-      xCorners[1] = -20;
-      yCorners[1] = -20;
-      xCorners[2] = 40;
-      yCorners[2] = 0;
+      xCorners[1] = -5;
+      yCorners[1] = 0;
+      xCorners[2] = -20;
+      yCorners[2] = -20;
+      xCorners[3] = 40;
+      yCorners[3] = 0;
     }
     
     public void setXspeed(double Xspeed){

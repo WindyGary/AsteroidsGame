@@ -39,7 +39,7 @@ public void draw()
     }
   }
   
-  if (spaceshipHp < 0){
+  if (spaceshipHp <= 0){
   } 
   else {
   bob.show();

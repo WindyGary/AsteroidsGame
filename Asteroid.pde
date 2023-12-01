@@ -1,29 +1,33 @@
-class Asteroid extends Floater {
+class Asteroid extends Floater{
   private int speedOfRotation;
-  private int soa;
-  public Asteroid() {
-    soa = (int)(Math.random()*4)+1;
+    public Asteroid(){
     corners = 5;
-    xCorners = new int[]{-20 * soa, 0 * soa, 20 * soa, 10 * soa, -10 * soa};
-    yCorners = new int[]{5 * soa, 20 * soa, 5 * soa, -15 * soa, -15 * soa};
+    xCorners = new int[]{-20,0,20,10,-10};
+    yCorners = new int[]{5,20,5,-15,-15};
     myColor = 123;
-    myCenterX = Math.random()*0;
-    myCenterY = Math.random()*1000;
+    myCenterX = 0;
+    myCenterY = Math.random()*800;
     myXspeed = Math.random()*2 - Math.random()*2;
     myYspeed = Math.random()*2 - Math.random()*2;
     speedOfRotation = 1;
   }
-  public void show() {
-    super.show();
+  public void show(){
+   super.show(); 
   }
-  public void move() {
+  public void move(){
     turn(speedOfRotation);
     super.move();
   }
-  public double getCenterX(double myCenterX) {
+  public double getX(){
     return myCenterX;
   }
-  public double getCenterY(double myCenterY) {
+  public double getY(){
     return myCenterY;
+  }
+  public void setX(int centerX){
+    myCenterX = centerX;
+  }
+  public void setY(int centerY){
+    myCenterY = centerY;
   }
 }

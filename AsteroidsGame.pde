@@ -1,11 +1,13 @@
 //your variable declarations here
 
 // bullet reset limit later
-int spaceshipHp = 3;
-int gameTick = 0;
-ArrayList <Asteroid> squid = new ArrayList <Asteroid>();
-Star[] patrick = new Star[500];
-Spaceship bob = new Spaceship();
+
+private boolean[] movement = new boolean[4];
+private int spaceshipHp = 3;
+private int gameTick = 0;
+private ArrayList <Asteroid> squid = new ArrayList <Asteroid>();
+private Star[] patrick = new Star[500];
+private Spaceship bob = new Spaceship();
 public void setup()
 {
   size(800, 800);
@@ -71,9 +73,36 @@ public void draw()
   } else if (bob.getYspeed() < -5){
     bob.setYspeed(-5);
   }
+  if (movement[0]) {
+    bob.turn(-2);
+  }
+  if (movement[1]) {
+    bob.accelerate(0.05);
+  }
+  
+  if (movement[2]) {
+    bob.turn(2);
+  }
+  
+  if (movement[3]) {
+    bob.accelerate(-0.05);
+  }
 }
 
 public void keyPressed(){
+    if (key == 'w' ) {
+      movement[1] = true;
+    }
+    if (key == 's') {
+      movement[3] = true;
+    }
+    if (key == 'a') {
+      movement[0] = true;
+    }
+    if (key == 'd') {
+      movement[2] = true;
+    }
+    
    if (key == '0') {
     bob.setCenterX(500);      
     bob.setCenterY(500);
@@ -81,10 +110,25 @@ public void keyPressed(){
     bob.setYspeed(0);
   }
    if (key == 'h') {
-    bob.setCenterX(Math.random()*800);
-    bob.setCenterY(Math.random()*800);
+    bob.setCenterX(Math.random()*1000);
+    bob.setCenterY(Math.random()*1000);
     bob.setXspeed(0);
     bob.setYspeed(0);
     bob.turn(Math.random()*360);
+  }
+}
+  
+public void keyReleased(){
+   if (key == 'w' ) {
+      movement[1] = false;
+    }
+    if (key == 's') {
+      movement[3] = false;
+    }
+    if (key == 'a') {
+      movement[0] = false;
+    }
+    if (key == 'd') {
+      movement[2] = false;
   }
 }

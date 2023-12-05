@@ -7,7 +7,7 @@ ArrayList <Asteroid> squid = new ArrayList <Asteroid>();
 ArrayList <Bullet> apple = new ArrayList <Bullet>();
 Star[] patrick = new Star[500];
 Spaceship bob = new Spaceship();
-boolean[] movement = new boolean[4];
+boolean[] keys = new boolean[5];
 public void setup()
 {
   size(800, 800);
@@ -54,16 +54,16 @@ public void draw()
     bob.move();
   }
                      //ship movement
-    if (movement[0]) {
+    if (keys[0]) {
       bob.turn(-2);
     }
-    if (movement[1]) {
+    if (keys[1]) {
       bob.turn(2);
     }
-    if (movement[2]) {
+    if (keys[2]) {
       bob.accelerate(0.05);
     }
-    if (movement[3]) {
+    if (keys[3]) {
       bob.accelerate(-0.05);
     }
 
@@ -78,6 +78,9 @@ public void draw()
     bob.setYspeed(-5);
   }
   
+  if (keys[4]){
+    apple.add(new Bullet(bob));
+  }
 }
 
 public void keyPressed() {
@@ -96,40 +99,44 @@ public void keyPressed() {
   }
   
   if (key == 'a'){
-    movement[0] = true;
+    keys[0] = true;
   }
   
   if (key == 'd'){
-   movement[1] = true; 
+   keys[1] = true; 
   }
   
   if (key == 'w'){
-   movement[2] = true; 
+   keys[2] = true; 
   }
   
   if (key == 's'){
-   movement[3] = true; 
+   keys[3] = true; 
   }
   
   if (key == ' '){
-    apple.add(new Bullet(bob));
+    keys[4] = true;
   }
 }
 
 public void keyReleased(){
     if (key == 'a'){
-    movement[0] = false;
+    keys[0] = false;
   }
   
   if (key == 'd'){
-   movement[1] = false; 
+   keys[1] = false; 
   }
   
   if (key == 'w'){
-   movement[2] = false; 
+   keys[2] = false; 
   }
   
   if (key == 's'){
-   movement[3] = false; 
+   keys[3] = false; 
+  }
+  
+  if (key == ' '){
+    keys[4] = false;
   }
 }

@@ -1,22 +1,24 @@
-//your variable declarations here
-
 // bullet reset limit later
+
+// fix color changes after death
+
+// create op mode
 int spaceshipHp = 5;
 int gameTick = 0;
-ArrayList <Asteroid> squid = new ArrayList <Asteroid>();
-ArrayList <Bullet> apple = new ArrayList <Bullet>();
-Star[] patrick = new Star[500];
+ArrayList <Asteroid> rocks = new ArrayList <Asteroid>();
+ArrayList <Bullet> bullets = new ArrayList <Bullet>();
+Star[] stars = new Star[500];
 Spaceship bob = new Spaceship();
 boolean[] keys = new boolean[5];
 public void setup()
 {
   size(800, 800);
-  for (int i = 0; i < patrick.length; i++) {
-    patrick[i] = new Star();
+  for (int i = 0; i < stars.length; i++) {
+    stars[i] = new Star();
   }
   for (int i = 0; i < 10; i++) {
-    squid.add(new Asteroid());
-    squid.get(i).setX((int)(Math.random()*800));
+    rocks.add(new Asteroid());
+    rocks.get(i).setX((int)(Math.random()*800));
   }
 }
 public void draw()
@@ -26,28 +28,39 @@ public void draw()
   background(0);
 
   if (gameTick % 100 == 0) {
-    squid.add(new Asteroid());
+    rocks.add(new Asteroid());
   }
 
-  for (int i = 0; i < apple.size(); i++){
-    apple.get(i).show();
-    apple.get(i).move();
+   for (int i = 0; i < stars.length; i++) {
+    stars[i].show();
+  }
+  
+  for (int i = 0; i < bullets.size(); i++){
+    bullets.get(i).show();
+    bullets.get(i).move();
   }
         
-  for (int i = 0; i < patrick.length; i++) {
-    patrick[i].show();
+  if (keys[4]){
+    bullets.add(new Bullet(bob));
   }
-
-  for (int i = 0; i < squid.size(); i++) {
-    squid.get(i).show();
-    squid.get(i).move();
-    float d = dist((float)bob.getX(), (float)bob.getY(), (float)squid.get(i).getX(), (float)squid.get(i).getY());
+  
+  for (int i = 0; i < rocks.size(); i++) {
+    rocks.get(i).show();
+    rocks.get(i).move();
+    float d = dist((float)bob.getX(), (float)bob.getY(), (float)rocks.get(i).getX(), (float)rocks.get(i).getY());
     if (d < 45) {
-      squid.remove(i);
+      rocks.remove(i);
       spaceshipHp--;
     }
+    //for (int j = 0; j < bullets.size(); j++){  //bullet fix needed
+    //  float dd = dist((float)rocks.get(i).getX(), (float)rocks.get(i).getY(), (float)bullets.get(j).getX(), (float)bullets.get(j).getY());
+    //  if (dd < 30){
+    //     bullets.remove(j);
+    //     rocks.remove(i);
+    //  }
+    //}
   }
-
+  
   if (spaceshipHp <= 0) {
   } else {
     bob.show();
@@ -76,10 +89,6 @@ public void draw()
     bob.setYspeed(5);
   } else if (bob.getYspeed() < -5) {
     bob.setYspeed(-5);
-  }
-  
-  if (keys[4]){
-    apple.add(new Bullet(bob));
   }
 }
 

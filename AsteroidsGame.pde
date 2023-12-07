@@ -75,7 +75,7 @@ public void draw()
     textSize(22);
     fill(255);
     textAlign(CENTER, TOP);
-    text("Bullet refilling. . .", 400, 30);
+    text("Refilling bullets. . .", 400, 30);
   }
 
   for (int i = 0; i < rocks.size(); i++) {    // asteroid collusion

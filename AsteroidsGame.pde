@@ -23,7 +23,6 @@ public void setup()
 }
 public void draw()
 {
-  System.out.println(gameTick);
   gameTick++;
 
   background(0);

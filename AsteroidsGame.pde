@@ -141,10 +141,10 @@ public void draw()
 
   //ship movement
   if (keys[0]) {
-    bob.turn(-2);
+    bob.turn(-3);
   }
   if (keys[1]) {
-    bob.turn(2);
+    bob.turn(3);
   }
   if (keys[2]) {
     bob.accelerate(0.05);

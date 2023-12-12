@@ -33,8 +33,8 @@ class Spaceship extends Floater
     public void setCenterY(double centerY){
       myCenterY = centerY;
     }
-    public void setRandomColor(){
-      myColor = (int)(Math.random()*255);
+    public void setColor(int colors){
+      myColor = colors;
     }
     public double getX(){
       return myCenterX;
@@ -50,5 +50,8 @@ class Spaceship extends Floater
     }
     public double getPointDirection(){
       return myPointDirection;
+    }
+    public void setPointDirection(double PD){
+      myPointDirection = PD;
     }
 }

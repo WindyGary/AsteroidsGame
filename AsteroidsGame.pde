@@ -10,6 +10,7 @@ private int bulletLimitTime = 0;
 private int bulletInBetween = 0;
 private boolean bulletAllow = false;
 private boolean bulletShooted = false;
+private boolean isGameOver = false;
 public void setup()
 {
   size(800, 800);
@@ -70,14 +71,6 @@ public void draw()
   // bullet gap
   bulletInBetween++;
 
-
-  if (bulletLimit >= 5) {
-    textSize(22);
-    fill(255);
-    textAlign(CENTER, TOP);
-    text("Refilling bullets. . .", 400, 30);
-  }
-
   for (int i = 0; i < rocks.size(); i++) {    // asteroid collusion
     rocks.get(i).show();
     rocks.get(i).move();
@@ -102,19 +95,32 @@ public void draw()
       }
     }
   }
-
+  
+  if (bulletLimit >= 5) {
+    textSize(22);
+    fill(255);
+    textAlign(CENTER, TOP);
+    text("Refilling bullets. . .", 400, 30);
+  }
+  
   if (spaceshipHp <= 0) {  //ship health
     background(0);
     textSize(100);
     textAlign(CENTER);
     fill(70);
     text("Game Over :c", 400, 400);
+    textSize(20);
+    text("Press 'm' to restart", 400, 450);
+    isGameOver = true;
   } else if (gameTick > 3000) {
     background(0);
     textSize(100);
     textAlign(CENTER);
     fill(70);
     text("You WON!! :D", 400, 400);
+    textSize(20);
+    text("Press 'm' to restart", 400, 450);
+    isGameOver = true;
   } else if (keys[5]) {
     bob.show();
     bob.move();
@@ -135,7 +141,7 @@ public void draw()
     bulletLimit = 0;
     bulletLimitTime = 0;
     bulletInBetween = 0;
-    bob.setRandomColor();
+    bob.setColor((int)(Math.random()*150));
   }
 
 
@@ -196,6 +202,31 @@ public void keyPressed() {
 
   if (key == '0') {
     keys[5] = true;
+  }
+  
+  if (key == 'm' && isGameOver){
+  isGameOver = false;
+  keys[5] = false;
+  bob.setColor(255);
+  rocks.removeAll(rocks);
+  bullets.removeAll(bullets);
+  for (int i = 0; i < 10; i++) {
+  rocks.add(new Asteroid());
+  rocks.get(i).setX((int)(Math.random()*800));
+  }
+  for (int i = 0; i < stars.length; i++) {
+  stars[i] = new Star();
+  }
+  bob.setCenterX(400);
+  bob.setCenterY(400);
+  bob.setPointDirection(0);
+  bob.setXspeed(0);
+  bob.setYspeed(0);
+  gameTick = 0;
+  spaceshipHp = 5;
+  bulletAllow = false;
+  bulletShooted = false;
+  bulletInBetween = bulletLimitTime = bulletLimit = 0;
   }
 }
 

@@ -1,7 +1,7 @@
 private int spaceshipHp = 5;
 private int gameTick = 0;
-private ArrayList <Asteroid> rocks = new ArrayList <Asteroid>();
-private ArrayList <Bullet> bullets = new ArrayList <Bullet>();
+public ArrayList <Asteroid> rocks = new ArrayList <Asteroid>();
+public ArrayList <Bullet> bullets = new ArrayList <Bullet>();
 private Star[] stars = new Star[500];
 private Spaceship bob = new Spaceship();
 private boolean[] keys = new boolean[6];
@@ -205,11 +205,16 @@ public void keyPressed() {
   }
   
   if (key == 'm' && isGameOver){
-  isGameOver = false;
   keys[5] = false;
   bob.setColor(255);
-  rocks.removeAll(rocks);
-  bullets.removeAll(bullets);
+  for (int i = 0; i < rocks.size(); i++){
+    rocks.remove(i);
+    i--;            //rocks.removeAll(rocks);
+  }                                          
+  for (int i = 0; i < bullets.size(); i++){
+    bullets.remove(i);
+    i--;            //bullets.removeAll(bullets);
+  }
   for (int i = 0; i < 10; i++) {
   rocks.add(new Asteroid());
   rocks.get(i).setX((int)(Math.random()*800));
@@ -222,11 +227,12 @@ public void keyPressed() {
   bob.setPointDirection(0);
   bob.setXspeed(0);
   bob.setYspeed(0);
-  gameTick = 0;
-  spaceshipHp = 5;
   bulletAllow = false;
   bulletShooted = false;
   bulletInBetween = bulletLimitTime = bulletLimit = 0;
+  isGameOver = false;
+  gameTick = 0;
+  spaceshipHp = 5;
   }
 }
 

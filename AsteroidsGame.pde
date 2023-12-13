@@ -1,7 +1,7 @@
 private int spaceshipHp = 5;
 private int gameTick = 0;
-public ArrayList <Asteroid> rocks = new ArrayList <Asteroid>();
-public ArrayList <Bullet> bullets = new ArrayList <Bullet>();
+private ArrayList <Asteroid> rocks = new ArrayList <Asteroid>();
+private ArrayList <Bullet> bullets = new ArrayList <Bullet>();
 private Star[] stars = new Star[500];
 private Spaceship bob = new Spaceship();
 private boolean[] keys = new boolean[6];

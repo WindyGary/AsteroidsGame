@@ -28,11 +28,11 @@ public void draw()
 
   background(0);
 
-  if (gameTick % 80 == 0 && gameTick < 3000) {    // generate asteroid
+  if (gameTick % 80 == 0 && !isGameOver) {    // generate asteroid
     rocks.add(new Asteroid());
   }
 
-  if (keys[5] && gameTick % 5 == 0 && gameTick < 3000) {
+  if (keys[5] && gameTick % 5 == 0 && !isGameOver) {
     rocks.add(new Asteroid());
   }
 

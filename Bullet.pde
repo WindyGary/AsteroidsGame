@@ -8,7 +8,7 @@ class Bullet extends Floater{
     accelerate(6.0);
   }
   public void show(){
-    fill(50);
+    fill(0);
     stroke(255);
     ellipse((float)myCenterX,(float)myCenterY,10,10);
   }
